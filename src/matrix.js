@@ -6,6 +6,12 @@ try {
   ({Robot,Adapter,TextMessage,User} = prequire('hubot'));
 }
 
+// ###########################################################################
+// here we fix the crypto module missing at the start of a matrix hubot adapter
+// ###########################################################################
+global.Olm = require('olm');
+
+
 let sdk = require('matrix-js-sdk');
 let request = require('request');
 let sizeOf = require('image-size');
