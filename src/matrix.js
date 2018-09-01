@@ -54,10 +54,10 @@ class Matrix extends Adapter {
         if (/^(f|ht)tps?:\/\//i.test(str)) {
           result.push(this.sendURL(envelope, str));
         } else {
-          result.push(this.client.sendNotice(envelope.room, str).catch(err => {
+          result.push(this.client.sendTextMessage(envelope.room, str).catch(err => {
             if (err.name === 'UnknownDeviceError') {
               this.handleUnknownDevices(err);
-              return this.client.sendNotice(envelope.room, str);
+              return this.client.sendTextMessage(envelope.room, str);
             }
           }));
         }
